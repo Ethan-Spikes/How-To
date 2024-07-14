@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#this is how scripts are meant to be structured. 
+
+#the main purpose of scripting is to solve problems permanently and across a broad set of applications. 
+
+#the more versatile a function, the better. 
+
+#a function exists to solve a specific problem by performing one or more tasks.
+##probably every conceiveable task has been solved by someone - you are only reencountering them, and will encounter them again.
+
+#so, scripting and programming structures their scripts as a series of functions that are broadly applicable called by the main function.
+
+#the main function exists to determine how these functions are called and behave. This part defines the script.
+
+#the functions are general solutions that the main function is to call.
+
+#first, we defined the functions we want, allowing the script to define them before the main calls them in execution...
+
+Funct_1() {
+
+  echo "This is the first function called and should be the first function defined in your script."
+
+}
+
+Funct_2() {
+
+  echo "This is the second function, should be second defined in your script."
+
+}
+
+#then we define the main function, which is to determine the character and order of the script
+
+Main() {
+
+  echo "Welcome to a demonstration on script structure!"
+  sleep 5
+  echo "This script demonstrates how scripts are structured so that the most difficult parts of coding only need to be written once!"
+  sleep 7
+  echo "we will now begin calling the functions."
+  Funct_1
+  sleep 5
+  Funct_2
+  sleep 5
+  echo "All functions called. Terminating"
+
+}
+
+Main
+
