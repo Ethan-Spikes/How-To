@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#structure
+
+#while getopts 'abc' OPTION; do 
+#	case "$OPTION" in
+#		a)
+#			;;
+#		b)
+#			;;
+#		c)
+#			;;
+#	esac
+#done
+
+#demonstration
+
+while getopts 'abcd:h' OPTION; do #the getopts command takes matched cmd line options and puts them into the variable OPTION.
+	case "$OPTION" in #the case command executes the first (each if while loop) condition that is equal to $OPTION.
+		a) #to select this and other options, run <command> -a or -b and so on.
+			echo 'option a selected'
+			;;
+		b)
+			echo 'option b selected'
+			;;
+		c)
+			echo 'option c selected'
+			;;
+		d) #per the above colon, d requires an argument
+			echo "argument is $OPTARG" #getops makes $OPTARG represent the argument for the option
+			rrb="$OPTARG"
+			echo "result of variable is $rrb"
+			
+			;;
+		h) #the ever-important option for help
+			echo "this is the help you wanted"
+			;;
+		*) #this is special. for any option not the above, do the below
+			echo "this displays when you do something wrong"
+			;;
+	esac #reverse word 'case', closes a case.
+done
+
+#for option a, run './test_options -a'
+#option d requires an argument
