@@ -1,0 +1,72 @@
+#!/bin/bash
+
+ARGS=$(getopt --options ascph --long "status,show,commit,push,help" -- "$@")
+#where;
+	#getopt is the tool we're using
+	#--options sets the one-letter options
+	#--long sets the long-form options in the same order listed as the one-letter options
+		#the double quotes around the long-form options are important
+	#-- "$@" does something - don't know, but it is necessary to apply result to ARGS
+
+eval set --"$ARGS" #breaks down ARGS into a set, allowing getopt to close out the options. They are not ready to be used
+
+"name the variables"
+status="false"
+show="false"
+commit="false"
+push="false"
+help="false"
+
+while true; do
+	case "$1" in
+		-a|--status)
+			echo "arg is $1"
+			status="true"
+			echo "status is $status"
+			shift;; #I don't know what shift does, but it allows it to go back I guess.
+		-s|--show)
+			echo "arg is $1"
+			show="true"
+			echo "show is $show"
+			shift;;
+		-c|--commit)
+			echo "arg is $1"
+			commit="true"
+			echo "commit is $commit"
+			shift;;
+		-p|--push)
+			echo "arg is $1"
+			push="true"
+			echo "push is $push"
+			shift;;
+		-h|--help)
+			echo "arg is $1"
+			help="true"
+			echo "help is $help"
+			echo "<script> -(arg) or --(arg)"
+			shift;;
+		--)
+			break;; #this breaks the loop
+		*)
+			printf "unknown option %s\n" "arg is $1"
+			exit 1;; #this exits the script
+	esac
+done
+
+echo "we left the while loop"
+
+echo " "
+echo "status is $status"
+echo " "
+echo "show is $show"
+echo " "
+echo "commit is $commit"
+echo " "
+echo "push is $push"
+echo " "
+echo "help is $help"
+echo " "
+
+
+
+echo "terminating script"
