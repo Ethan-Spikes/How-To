@@ -1,72 +1,55 @@
 #!/bin/bash
 
-ARGS=$(getopt --options ascph --long "status,show,commit,push,help" -- "$@")
-#where;
-	#getopt is the tool we're using
-	#--options sets the one-letter options
-	#--long sets the long-form options in the same order listed as the one-letter options
-		#the double quotes around the long-form options are important
-	#-- "$@" does something - don't know, but it is necessary to apply result to ARGS
+#In my experience, before any functions can be defined, the arguments must be handled.
+#this is inconvenient, and there is likely a better way.
 
-eval set --"$ARGS" #breaks down ARGS into a set, allowing getopt to close out the options. They are not ready to be used
+ARGS=$(getopt --options 'cdi' --long "configure,default,interactive" -- "$@")
 
-"name the variables"
-status="false"
-show="false"
-commit="false"
-push="false"
-help="false"
+set -- "$ARGS"
 
-while true; do
-	case "$1" in
-		-a|--status)
-			echo "arg is $1"
-			status="true"
-			echo "status is $status"
-			shift;; #I don't know what shift does, but it allows it to go back I guess.
-		-s|--show)
-			echo "arg is $1"
-			show="true"
-			echo "show is $show"
-			shift;;
-		-c|--commit)
-			echo "arg is $1"
-			commit="true"
-			echo "commit is $commit"
-			shift;;
-		-p|--push)
-			echo "arg is $1"
-			push="true"
-			echo "push is $push"
-			shift;;
-		-h|--help)
-			echo "arg is $1"
-			help="true"
-			echo "help is $help"
-			echo "<script> -(arg) or --(arg)"
-			shift;;
-		--)
-			break;; #this breaks the loop
-		*)
-			printf "unknown option %s\n" "arg is $1"
-			exit 1;; #this exits the script
-	esac
-done
-
-echo "we left the while loop"
-
-echo " "
-echo "status is $status"
-echo " "
-echo "show is $show"
-echo " "
-echo "commit is $commit"
-echo " "
-echo "push is $push"
-echo " "
-echo "help is $help"
-echo " "
+configure="false"
+default="false"
+interactive="false"
 
 
+Main() {
 
-echo "terminating script"
+	for i in $ARGS; do
+		case "$i" in
+			-c | --configure)
+				configure="true"
+				echo "this will configure Auto Mode"
+				shift;;
+			-d | --default)
+				default="true"
+				echo "this will return Auto Mode to default."
+				shift;;
+			-i | --interactive)
+				interactive="true"
+				echo "this will execute secure1host in interactive mode."
+				shift;;
+			--)
+				break;;
+
+		esac
+	done
+	
+	if [ "$interactive" == true ]; then
+		echo "executes in interactive mode"
+	fi
+	
+	if [ "$configure" == true ]; then
+		echo "configures secure1host"
+	fi
+	
+	if [ "$default" == true ]; then
+		echo "returns secure1host to default mode"
+	fi
+
+	echo "Show_Args complete. Terminating script."
+	exit
+
+}
+
+Main
+
