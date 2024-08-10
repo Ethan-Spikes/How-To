@@ -1,0 +1,24 @@
+Set_Variables() {# for later use in script, or to set up a .config file
+
+	echo "Answer the following questions."
+	echo " "
+	echo "would you like to run a full upgrade of the system?(y/n)"
+	read S_Update
+	echo " "
+	echo "would you like to install and update all tools used in this script?(y/n)"
+	read T_Update
+	echo " "
+	echo "Would you like to create a cron job to run an upgrade of the system at 1AM every morning to protect it from vulnerabilities?(y/n)"
+	read C_Update
+	echo " "
+	echo "Would you like to enable a default system firewall? (deny incoming, allow outgoing)(y/n)"
+	read F_Default
+	echo " "
+	echo "Would you like to run a local subnet scan after the script runs?(y/n)"
+	read Net_Scan
+	echo " "
+	echo "Would you like to run a System Hardening Audit after the script runs?(y/n)"
+	read Hard_Audit
+	echo " "
+
+} 
