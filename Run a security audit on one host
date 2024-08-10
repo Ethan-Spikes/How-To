@@ -1,0 +1,6 @@
+Lynis_Hardening_Audit() {
+
+		echo 'system will now do an internal audit'
+		sudo lynis audit system
+	
+}
