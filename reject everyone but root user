@@ -1,0 +1,10 @@
+Root_Check() { #good
+
+	user=$(whoami)
+	if [ $user != root ]; then
+		echo 'Permission denied.'
+		echo ' '
+		exit
+	fi
+
+}
